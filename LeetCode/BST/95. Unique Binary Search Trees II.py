@@ -26,3 +26,35 @@ class Solution:
                         trees.append(node)
             return trees
         return BuildTrees(1,n)
+
+#Recursive Dynamic Programming:
+class Solution:
+    def generateTrees(self, n: int) -> List[Optional[TreeNode]]:
+        if n== 0 :
+            return []
+
+        memo = {}
+
+        def possibleBST(start, end):
+            if (start,end) in memo:
+                return memo[(start,end)]
+
+            trees = []
+            if start>end:
+                trees.append(None)
+                return trees
+
+            for i in range(start,end+1):
+                left_subtrees = possibleBST(start,i-1)
+                right_subtrees = possibleBST(i+1,end)
+
+                for left_tree in left_subtrees:
+                    for right_tree in right_subtrees:
+                        root = TreeNode(i, left_tree, right_tree)
+                        trees.append(root)
+
+            memo[(start,end)] = trees
+            return trees
+                
+            #Time & complexity: O(C(n)) ; C-> Catalan Number [for both]
+            # C = (4^n)/root(n)
