@@ -1,9 +1,11 @@
-# Recursive Inorder Traversal
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
+
+# Recursive Inorder Traversal
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         if root is None:
